@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {DEL_TODO} from '../store/action-types';
+import * as types from '../store/action-types';
 class TodoList extends Component {
   render() {
     return (
@@ -8,7 +8,9 @@ class TodoList extends Component {
         {
           this.props.todos.map((item, index) => (
             <li className="list-group-item" key={index}>
-              <input type="checkbox"/>
+              <input type="checkbox"
+
+                     checked={item.completed}/>
               <span style={{marginLeft:5}}>{item.title}</span>
               <span className="pull-right">
                  <button
@@ -29,5 +31,8 @@ export default connect(
     delTodo:(id)=>dispatch({type:DEL_TODO,id})
   })*/
   //给当前组件增加属性，值是一个函数，返回一个action.
-  {delTodo:id=>({type:DEL_TODO,id})}
+  {
+    delTodo:id=>({type:types.DEL_TODO,id}),
+    toggleTodo:id=>({type:types.TOGGLE_TODO,id})
+  }
 )(TodoList)
