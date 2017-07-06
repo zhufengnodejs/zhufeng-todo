@@ -7,7 +7,7 @@ import {ADD_TODO} from '../store/action-types';
  */
 class TodoHeader extends Component{
     handleKeyDown = (event)=>{
-      if(event.keyCode == 13 && event.target.value){
+      if(event.keyCode === 13 && event.target.value){
           let title = event.target.value;
           this.props.addTodo(title);
           event.target.value='';
