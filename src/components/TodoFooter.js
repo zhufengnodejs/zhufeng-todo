@@ -37,8 +37,8 @@ class TodoFooter extends Component{
 
 export default connect(
  state=>({
-   activeCount:state.todos.filter(item=>!item.completed).length,
-   completedCount:state.todos.filter(item=>item.completed).length,
+   activeCount:state.todos.list.filter(item=>!item.completed).length,
+   completedCount:state.todos.list.filter(item=>item.completed).length,
    filter:state.filter
  }),
   {
