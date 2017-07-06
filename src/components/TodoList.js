@@ -26,7 +26,16 @@ class TodoList extends Component {
 }
 
 export default connect(
-  state => ({todos: state.todos}),
+  state => ({todos: state.todos.filter(item=>{
+    switch(state.filter){
+      case 'active':
+        return !item.completed;
+      case 'completed':
+        return item.completed;
+      default:
+        return true;
+    }
+  })}),
   /*dispatch => ({
     delTodo:(id)=>dispatch({type:DEL_TODO,id})
   })*/

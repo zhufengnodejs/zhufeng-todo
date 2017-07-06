@@ -11,13 +11,17 @@ class TodoFooter extends Component{
                 }
               </div>
               <div className="col-sm-5">
-                 <button className="btn btn-default">全部</button>
+                 <button
+                   onClick={()=>this.props.changeFilter('all')}
+                   className={"btn "+(this.props.filter ==='all'?'btn-success':'btn-default')}>全部</button>
                   <button
+                    onClick={()=>this.props.changeFilter('active')}
                     style={{marginLeft:5}}
-                    className="btn btn-default">未完成</button>
+                    className={"btn "+(this.props.filter ==='active'?'btn-success':'btn-default')}>未完成</button>
                   <button
+                    onClick={()=>this.props.changeFilter('completed')}
                     style={{marginLeft:5}}
-                    className="btn btn-default">已完成</button>
+                    className={"btn "+(this.props.filter ==='completed'?'btn-success':'btn-default')}>已完成</button>
               </div>
               <div className="col-sm-3">
                 {this.props.completedCount>0?
@@ -34,9 +38,11 @@ class TodoFooter extends Component{
 export default connect(
  state=>({
    activeCount:state.todos.filter(item=>!item.completed).length,
-   completedCount:state.todos.filter(item=>item.completed).length
+   completedCount:state.todos.filter(item=>item.completed).length,
+   filter:state.filter
  }),
   {
-    deleteAllCompleted:()=>({type:types.DELETE_ALL_COMPLETED})
+    deleteAllCompleted:()=>({type:types.DELETE_ALL_COMPLETED}),
+    changeFilter:(filter)=>({type:types.CHANGE_FILTER,filter})
   }
 )(TodoFooter);
