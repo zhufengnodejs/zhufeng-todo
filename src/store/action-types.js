@@ -10,6 +10,6 @@ export const DELETE_ALL_COMPLETED = 'DELETE_ALL_COMPLETED';
 export const TOGGLE_ALL = 'TOGGLE_ALL';
 //修改中的ID
 export const CHANGE_EDITING = 'CHANGE_EDITING';
-
+export const UPDATE_TODO = 'UPDATE_TODO';
 //修改过滤类型 all(显示全部) active(显示未完成) completed(只显示已完成的)
 export const CHANGE_FILTER = 'CHANGE_FILTER';

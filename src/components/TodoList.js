@@ -2,6 +2,28 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as types from '../store/action-types';
 class TodoList extends Component {
+  constructor(){
+    super();
+    this.state = {title:''};
+  }
+  changeEditing = (id)=>{
+    let item = this.props.todos.find(item=>item.id == id);
+    this.title = item.title;
+    this.props.changeEditing(id);
+    this.setState({title:item.title});
+  }
+  handleChange = (event)=>{
+    this.setState({title:event.target.value});
+  }
+  handleKeyDown = (event,id)=>{
+    if(event.keyCode === 27){
+      this.props.changeEditing('');
+      this.setState({title:this.title});
+    }else if(event.keyCode === 13){
+      this.props.changeEditing('');
+      this.props.updateTodo(id,this.state.title);
+    }
+  }
   render() {
     return (
       <ul className="list-group">
@@ -22,9 +44,14 @@ class TodoList extends Component {
                      checked={item.completed}/>
               {
                 this.props.editing === item.id?
-                  <input type="text"  value={item.title}/>
+                  <input
+                    onChange={this.handleChange}
+                    onKeyDown={(event)=>this.handleKeyDown(event,item.id)}
+                    style={{marginLeft:5,lineHeight:'24px',borderRadius:3,width:400}}
+                    type="text"
+                    value={this.state.title}/>
                   :<span
-                  onDoubleClick={()=>this.props.changeEditing(item.id)}
+                  onDoubleClick={()=>this.changeEditing(item.id)}
                   style={{marginLeft:5,textDecoration:item.completed?'line-through':''}}>{item.title}</span>
               }
 
@@ -63,6 +90,7 @@ export default connect(
     delTodo:id=>({type:types.DEL_TODO,id}),
     toggleTodo:id=>({type:types.TOGGLE_TODO,id}),
     toggleAll:checked=>({type:types.TOGGLE_ALL,checked}),
-    changeEditing:id=>({type:types.CHANGE_EDITING,id})
+    changeEditing:id=>({type:types.CHANGE_EDITING,id}),
+    updateTodo:(id,title)=>({type:types.UPDATE_TODO,id,title})
   }
 )(TodoList)
