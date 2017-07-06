@@ -9,9 +9,9 @@ class TodoList extends Component {
           this.props.todos.map((item, index) => (
             <li className="list-group-item" key={index}>
               <input type="checkbox"
-
+                     onChange={()=>this.props.toggleTodo(item.id)}
                      checked={item.completed}/>
-              <span style={{marginLeft:5}}>{item.title}</span>
+              <span style={{marginLeft:5,textDecoration:item.completed?'line-through':''}}>{item.title}</span>
               <span className="pull-right">
                  <button
                    className="btn btn-danger btn-xs"
