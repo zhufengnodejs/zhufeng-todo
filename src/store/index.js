@@ -10,4 +10,5 @@ let store = createStore(reducer);
   todos:[{id:1,title:'学习React'}],
   filter:'all'
 }*/
+window.store = store;
 export default store;

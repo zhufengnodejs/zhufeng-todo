@@ -1,2 +1,3 @@
-export todos from './todos';
-export filter from './filter';
+import todos from './todos';
+import filter from './filter';
+export {todos,filter}
