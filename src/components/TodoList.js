@@ -53,6 +53,7 @@ export default connect(
   //给当前组件增加属性，值是一个函数，返回一个action.
   {
     delTodo:id=>({type:types.DEL_TODO,id}),
-    toggleTodo:id=>({type:types.TOGGLE_TODO,id})
+    toggleTodo:id=>({type:types.TOGGLE_TODO,id}),
+    toggleAll:checked=>({type:types.TOGGLE_ALL,checked})
   }
 )(TodoList)

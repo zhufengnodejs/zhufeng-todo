@@ -6,6 +6,8 @@ export const DEL_TODO = 'DEL_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 //删除所有已完成的待办事项
 export const DELETE_ALL_COMPLETED = 'DELETE_ALL_COMPLETED';
+//全选或全消
+export const TOGGLE_ALL = 'TOGGLE_ALL';
 
 //修改过滤类型 all(显示全部) active(显示未完成) completed(只显示已完成的)
 export const CHANGE_FILTER = 'CHANGE_FILTER';
