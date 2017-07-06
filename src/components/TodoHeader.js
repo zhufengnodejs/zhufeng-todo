@@ -19,7 +19,8 @@ class TodoHeader extends Component{
         )
     }
 }
-
+// mapStateToProps 把状态对象映射为当前组件属性对象 输入 从redux中读取状态在页面中渲染
+// mapDispatchToProps 把dispatch方法映射为属性 输出 把当前视图中的操作发射出去
 export default connect(
   state=>({}),//把总的状态树映射为当前组件需要的属性对象
   dispatch=>({//把store.dispatch方法映射为一个对象
