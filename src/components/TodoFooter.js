@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import * as types from '../store/action-types';
 class TodoFooter extends Component{
     render(){
         return (
@@ -19,7 +20,11 @@ class TodoFooter extends Component{
                     className="btn btn-default">已完成</button>
               </div>
               <div className="col-sm-3">
-                {this.props.completedCount>0?<button className="btn btn-danger">清除已完成</button>:null}
+                {this.props.completedCount>0?
+                  <button
+                    className="btn btn-danger"
+                    onClick={()=>this.props.deleteAllCompleted()}>清除已完成</button>
+                  :null}
               </div>
             </div>
         )
@@ -30,5 +35,8 @@ export default connect(
  state=>({
    activeCount:state.todos.filter(item=>!item.completed).length,
    completedCount:state.todos.filter(item=>item.completed).length
- })
+ }),
+  {
+    deleteAllCompleted:()=>({type:types.DELETE_ALL_COMPLETED})
+  }
 )(TodoFooter);
