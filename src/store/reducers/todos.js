@@ -1,12 +1,16 @@
 //todo的reducer
 import * as types from '../action-types';
+let list = localStorage.getItem('todos')?JSON.parse(localStorage.getItem('todos')):[];
+let initState = {editing: '', list}
 // 增加 删除 切换完成状态
-export default function (state = {editing: '', list: []}, action) {
+export default function (state = initState, action) {
   switch (action.type) {
     case types.ADD_TODO:
+      let list = [...state.list, {id: Date.now(), title: action.title, completed: false}];
+      localStorage.setItem('todos',JSON.stringify(list));
       return {
         ...state,
-        list: [...state.list, {id: Date.now(), title: action.title, completed: false}]
+        list
       };
     case types.DEL_TODO:
       return {
